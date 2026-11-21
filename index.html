@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#17151e">
+  <meta name="description" content="A Bolha é uma mascote de código aberto para Windows e Android. Experimente aqui e baixe de graça.">
+  <meta property="og:title" content="Bolha">
+  <meta property="og:description" content="Uma mascote para o seu desktop. Brinque com a Bolha no navegador.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/bolha-mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <title>Bolha</title>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+  <header class="site-header">
+    <div class="frame header-row">
+      <a class="brand" href="#conteudo">
+        <img src="assets/bolha-mark.svg" width="34" height="34" alt="">
+        <span>Bolha</span>
+      </a>
+      <nav aria-label="Navegação principal">
+        <a href="#experimente">Experimente</a>
+        <a href="#baixar">Baixar</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo" class="frame">
+    <div class="intro">
+      <div class="intro-copy">
+        <h1>Bolha</h1>
+        <p>Uma mascote para o seu desktop. Ela passeia, brinca e aprende com você.</p>
+        <a class="button primary" href="#baixar">Baixar a Bolha</a>
+      </div>
+
+      <section class="playground" id="experimente" aria-labelledby="desktop-title">
+        <h2 id="desktop-title">Meu desktop está mais feliz :)</h2>
+        <div class="demo-panel">
+          <div class="demo-screen" id="demoScreen" tabindex="0" aria-label="Área para brincar com a Bolha" aria-describedby="demo-help">
+            <div class="wallpaper" aria-hidden="true"><span></span><span></span></div>
+            <div class="desktop-taskbar" aria-hidden="true"></div>
+            <button class="demo-character" id="demoCharacter" type="button" aria-label="Fazer carinho na Bolha">
+              <canvas id="demoBolha" width="240" height="240" aria-hidden="true"></canvas>
+            </button>
+            <button class="demo-object demo-toy" id="demoToy" type="button" aria-label="Bolinha de brincar" hidden>
+              <canvas width="88" height="88" aria-hidden="true"></canvas>
+            </button>
+            <button class="demo-object demo-notebook" id="demoNotebook" type="button" aria-label="Guardar o notebook" hidden>
+              <canvas width="200" height="144" aria-hidden="true"></canvas>
+            </button>
+            <span class="demo-message" id="demoMessage" aria-hidden="true" hidden></span>
+            <div class="demo-effects" id="demoEffects" aria-hidden="true"></div>
+            <span class="demo-paddle" id="demoPaddle" aria-hidden="true" hidden></span>
+            <div class="demo-score" id="demoScore" aria-hidden="true" hidden></div>
+            <div class="demo-menu" id="demoMenu" role="group" aria-label="Menu da Bolha" hidden>
+              <button type="button" data-command="caress">Carinho</button>
+              <button type="button" data-command="sleep">Dormir um pouco</button>
+              <button type="button" data-command="toy">Mostrar ou guardar brinquedo</button>
+              <button type="button" data-command="notebook">Notebook</button>
+            </div>
+          </div>
+          <div class="demo-status">
+            <span id="demoStatus" role="status">Bolha está observando</span>
+          </div>
+        </div>
+        <p class="help" id="demo-help">Clique ou toque para fazer carinho. Segure para mover e solte em movimento para arremessar.</p>
+
+        <div class="demo-controls" aria-label="Controles da Bolha">
+          <div class="demo-actions">
+            <button type="button" data-action="toy" aria-pressed="false">Mostrar brinquedo</button>
+            <button type="button" data-action="pingpong" aria-pressed="false">Pingue-pongue</button>
+            <button type="button" data-action="juggle" aria-pressed="false">Embaixadinhas</button>
+            <button type="button" data-action="notebook" aria-pressed="false">Notebook</button>
+            <button type="button" data-action="cursor" aria-pressed="false">Chamar ao cursor</button>
+            <button type="button" data-action="pause" aria-pressed="false">Pausar</button>
+          </div>
+          <details class="expressions">
+            <summary>Expressões e brinquedo</summary>
+            <div class="extra-controls">
+              <div class="expression-list" role="group" aria-label="Expressões">
+                <button class="expression-button" type="button" data-expression="feliz" aria-pressed="false">Feliz</button>
+                <button class="expression-button" type="button" data-expression="curioso" aria-pressed="false">Curiosa</button>
+                <button class="expression-button" type="button" data-expression="dormindo" aria-pressed="false">Dormir</button>
+                <button class="expression-button" type="button" data-expression="bravo" aria-pressed="false">Brava</button>
+              </div>
+              <label class="toy-choice">Brinquedo
+                <select id="toyKind">
+                  <option value="ball">Bolinha</option>
+                  <option value="peanut">Amendoim</option>
+                </select>
+              </label>
+            </div>
+          </details>
+        </div>
+      </section>
+    </div>
+
+    <section class="downloads" id="baixar" aria-labelledby="download-title">
+      <div>
+        <h2 id="download-title">Leve a Bolha com você</h2>
+        <p>Gratuita e de código aberto. No aplicativo, o aprendizado fica no seu dispositivo.</p>
+      </div>
+      <div class="download-buttons">
+        <a class="button primary" href="https://github.com/kuky13/bolha/releases/download/v0.5.9.0/Bolha-Setup-0.5.9.0-x64.exe">Windows x64</a>
+        <a class="button secondary" href="https://github.com/kuky13/bolha/releases/download/v0.5.9.0/Bolha-0.5.9.0-Android.apk">Android</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="frame footer-row">
+      <p>Feita por KukySolutions a partir do <a href="https://github.com/mille-okws/pestinha">Pestinha</a>, de mille-okws e colaboradores.</p>
+      <nav aria-label="Informações do projeto">
+        <a href="https://github.com/kuky13/bolha">Código</a>
+        <a href="https://github.com/kuky13/bolha/blob/main/docs/USO.md">Guia de uso</a>
+        <a href="https://github.com/kuky13/bolha/blob/main/NOTICE.md">Créditos</a>
+      </nav>
+    </div>
+  </footer>
+  <script src="bolha-draw.js" defer></script>
+  <script src="script.js" defer></script>
+</body>
+</html>

@@ -12,9 +12,9 @@
   const notebookButton = $('demoNotebook'), notebookCanvas = notebookButton.querySelector('canvas');
   const taskbar = stage.querySelector('.desktop-taskbar');
   const status = $('demoStatus'), note = $('demoMessage'), effects = $('demoEffects');
-  const paddle = $('demoPaddle'), score = $('demoScore'), contextMenu = $('demoMenu');
+  const contextMenu = $('demoMenu');
   const choices = [...document.querySelectorAll('.expression-button')];
-  const actions = Object.fromEntries([...document.querySelectorAll('.demo-actions button')]
+  const actions = Object.fromEntries([...document.querySelectorAll('.demo-panel [data-action]')]
     .map(button => [button.dataset.action, button]));
 
   const pet = { x: 0, y: 0, vx: 0, vy: 0, angle: 0, spin: 0, radius: 52, size: 140 };
@@ -26,7 +26,7 @@
   let pilot = false, caught = false, lastAlt = -Infinity, lastCaress = -Infinity, caressDistance = 0;
   let clock = 0, last = 0, noteUntil = 0, nextMove = 2, nextKick = 0, nextWink = 7.4;
   let winkAt = -Infinity, squash = 0;
-  let juggle = null, match = null, notebookFrame = -1, lastToyFrame = '';
+  let juggle = null, notebookFrame = -1, lastToyFrame = '';
   let demoVisible = true, animation = 0, particleList = [];
   let thoughtHide = 0;
   const thoughts = ['Oi, humano!', 'Isso faz cócegas!', 'De novo? ♡', 'Tô de olho em você.'];
@@ -52,7 +52,7 @@
   function hideMessage() {
     if (!note.classList.contains('visible')) return;
     note.classList.remove('visible');
-    thoughtHide = window.setTimeout(() => { note.hidden = true; }, motion.matches ? 0 : 180);
+    thoughtHide = window.setTimeout(() => { note.hidden = true; }, motion.matches ? 0 : 130);
   }
 
   function setExpression(value, text = expressions[value]) {
@@ -70,7 +70,6 @@
     actions.toy.setAttribute('aria-pressed', String(!ballButton.hidden));
     actions.toy.textContent = ballButton.hidden ? 'Mostrar brinquedo' : 'Guardar brinquedo';
     actions.notebook.setAttribute('aria-pressed', String(activity === 'notebook'));
-    actions.pingpong.setAttribute('aria-pressed', String(activity === 'pingpong'));
     actions.juggle.setAttribute('aria-pressed', String(activity === 'juggle'));
     actions.cursor.setAttribute('aria-pressed', String(pilot));
     actions.pause.setAttribute('aria-pressed', String(paused));
@@ -93,9 +92,8 @@
 
   function finishActivity() {
     activity = '';
-    match = null;
     juggle = null;
-    paddle.hidden = score.hidden = notebookButton.hidden = true;
+    notebookButton.hidden = true;
     reflectControls();
   }
 
@@ -149,30 +147,6 @@
     requestFrame();
   }
 
-  function startPingPong() {
-    finishActivity();
-    stopGuide();
-    setToyVisible(true);
-    activity = 'pingpong';
-    match = { user: 0, bolha: 0, paddleX: width - 34, paddleY: ground * .56 };
-    paddle.hidden = score.hidden = false;
-    setExpression('atento', 'Pingue-pongue. Mova o ponteiro ou toque para rebater.');
-    pet.x = pet.radius + 12;
-    pet.vx = pet.vy = pet.spin = 0;
-    scoreText();
-    serve(-1);
-  }
-
-  function scoreText() {
-    score.textContent = `Bolha ${match.bolha} a ${match.user} Você`;
-  }
-
-  function serve(dir) {
-    Object.assign(ball, { x: width * .52, y: ground * .57, vx: dir * 175,
-      vy: (Math.random() - .5) * 90, spin: dir * 105 });
-    match.serveAfter = clock + .45;
-  }
-
   function startJuggling() {
     finishActivity();
     stopGuide();
@@ -208,8 +182,6 @@
     } else if (activity === name) {
       finishActivity();
       setExpression('observando');
-    } else if (name === 'pingpong') {
-      startPingPong();
     } else if (name === 'juggle') {
       startJuggling();
     } else if (name === 'notebook') {
@@ -247,10 +219,6 @@
       body.x = clamp(body.x, body.radius + 5, width - body.radius - 5);
       body.y = clamp(body.y, body.radius, ground - body.radius);
     }
-    if (match) {
-      match.paddleX = clamp(match.paddleX, width * .54, width - 14);
-      match.paddleY = clamp(match.paddleY, 24, ground - 26);
-    }
     lastToyFrame = '';
     notebookFrame = -1;
     fitArt();
@@ -284,10 +252,6 @@
       }
     }
     Object.assign(pointer, point, { time: now, present: true });
-    if (match) {
-      match.paddleX = clamp(point.x, width * .54, width - 14);
-      match.paddleY = clamp(point.y, 24, ground - 26);
-    }
   }
 
   function beforeGrab(event, body, button) {
@@ -396,45 +360,6 @@
       }
       return;
     }
-    if (match) {
-      if (clock < match.serveAfter) return;
-      const player = { x: match.paddleX, y: match.paddleY };
-      pet.y = clamp(pet.y + clamp(ball.y - pet.y, -164 * dt, 164 * dt), pet.radius, ground - pet.radius);
-      ball.x += ball.vx * dt;
-      ball.y += ball.vy * dt;
-      ball.angle += ball.spin * dt;
-      if (ball.y < ball.radius || ball.y > ground - ball.radius) {
-        ball.y = clamp(ball.y, ball.radius, ground - ball.radius);
-        ball.vy *= -1;
-      }
-      if (ball.vx > 0 && distance(ball, player) < ball.radius + 17 && ball.x <= player.x + 6) {
-        ball.vx = -Math.min(590, ball.vx + 31);
-        ball.vy = clamp((ball.y - player.y) * 10 + ball.vy * .42, -370, 370);
-      } else if (ball.vx < 0 && ball.x >= pet.x - 4 && distance(ball, pet) < pet.radius + ball.radius * .7) {
-        ball.vx = Math.min(610, Math.abs(ball.vx) + 29);
-        ball.vy = clamp((ball.y - pet.y) * 8 + (Math.random() - .5) * 48, -350, 350);
-        squash = .12;
-        burst(['✦'], ball.x, ball.y);
-      }
-      if (ball.x < -ball.radius || ball.x > width + ball.radius) {
-        const userWon = ball.x < 0;
-        match[userWon ? 'user' : 'bolha']++;
-        scoreText();
-        const points = score.textContent;
-        if (match.user === 5 || match.bolha === 5) {
-          const winner = match.user === 5 ? 'Você ganhou!' : 'Bolha ganhou!';
-          finishActivity();
-          setExpression('comemorando', `${winner} ${points}.`);
-          message(winner);
-          ball.vx = ball.vy = 0;
-          nextKick = clock + 2;
-        } else {
-          say(points);
-          serve(userWon ? 1 : -1);
-        }
-      }
-      return;
-    }
     if (grabbed?.body !== ball) fall(ball, dt, .58);
     if (activity || pilot || grabbed?.body === pet || state === 'dormindo') return;
     const gap = ball.x - pet.x, contact = pet.radius + ball.radius;
@@ -481,7 +406,7 @@
           stage.classList.add('cursor-caught');
           say('Bolha pegou o cursor. Clique para soltar.');
         }
-      } else if (!match) {
+      } else {
         fall(pet, dt, .39);
       }
       const angerGoal = state === 'bravo' && emotionTime + 4 > clock ? .8 : 0;
@@ -647,7 +572,6 @@
         if (art.drawObject(notebookCanvas, 'notebook', frame)) notebookFrame = frame;
       }
     }
-    if (match) place(paddle, match.paddleX - 9.5, match.paddleY - 14, ' rotate(-19deg)');
     if (clock >= noteUntil) hideMessage();
     positionNote();
     renderEffects(angle);
@@ -680,7 +604,7 @@
     button.addEventListener('pointermove', moveGrab);
     for (const event of ['pointerup', 'pointercancel', 'lostpointercapture']) button.addEventListener(event, releaseGrab);
     button.addEventListener('wheel', event => {
-      if (!grabbed && !match && !paused) {
+      if (!grabbed && !paused) {
         event.preventDefault();
         body.angle += event.deltaY < 0 ? -26 : 26;
         body.spin = event.deltaY < 0 ? -90 : 90;
@@ -722,13 +646,6 @@
         petButton.focus({ preventScroll: true });
       } else if (pilot) chooseActivity('cursor');
       else if (activity) chooseActivity(activity);
-    }
-    if (match && ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(event.key)) {
-      event.preventDefault();
-      const dy = event.key === 'ArrowUp' ? -16 : event.key === 'ArrowDown' ? 16 : 0;
-      const dx = event.key === 'ArrowLeft' ? -16 : event.key === 'ArrowRight' ? 16 : 0;
-      match.paddleY = clamp(match.paddleY + dy, 24, ground - 26);
-      match.paddleX = clamp(match.paddleX + dx, width * .54, width - 14);
     }
   });
   stage.addEventListener('keyup', event => {

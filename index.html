@@ -52,8 +52,6 @@
             </button>
             <span class="demo-message" id="demoMessage" aria-hidden="true" hidden></span>
             <div class="demo-effects" id="demoEffects" aria-hidden="true"></div>
-            <span class="demo-paddle" id="demoPaddle" aria-hidden="true" hidden></span>
-            <div class="demo-score" id="demoScore" aria-hidden="true" hidden></div>
             <div class="demo-menu" id="demoMenu" role="group" aria-label="Menu da Bolha" hidden>
               <button type="button" data-command="caress">Carinho</button>
               <button type="button" data-command="sleep">Dormir um pouco</button>
@@ -63,37 +61,36 @@
           </div>
           <div class="demo-status">
             <span id="demoStatus" role="status">Bolha está observando</span>
-          </div>
-        </div>
-        <p class="help" id="demo-help">Clique ou toque para fazer carinho. Segure para mover e solte em movimento para arremessar.</p>
-
-        <div class="demo-controls" aria-label="Controles da Bolha">
-          <div class="demo-actions">
-            <button type="button" data-action="toy" aria-pressed="false">Mostrar brinquedo</button>
-            <button type="button" data-action="pingpong" aria-pressed="false">Pingue-pongue</button>
-            <button type="button" data-action="juggle" aria-pressed="false">Embaixadinhas</button>
-            <button type="button" data-action="notebook" aria-pressed="false">Notebook</button>
-            <button type="button" data-action="cursor" aria-pressed="false">Chamar ao cursor</button>
             <button type="button" data-action="pause" aria-pressed="false">Pausar</button>
           </div>
-          <details class="expressions">
-            <summary>Expressões e brinquedo</summary>
-            <div class="extra-controls">
-              <div class="expression-list" role="group" aria-label="Expressões">
-                <button class="expression-button" type="button" data-expression="feliz" aria-pressed="false">Feliz</button>
-                <button class="expression-button" type="button" data-expression="curioso" aria-pressed="false">Curiosa</button>
-                <button class="expression-button" type="button" data-expression="dormindo" aria-pressed="false">Dormir</button>
-                <button class="expression-button" type="button" data-expression="bravo" aria-pressed="false">Brava</button>
-              </div>
-              <label class="toy-choice">Brinquedo
-                <select id="toyKind">
-                  <option value="ball">Bolinha</option>
-                  <option value="peanut">Amendoim</option>
-                </select>
-              </label>
+
+          <div class="demo-controls" role="group" aria-label="Controles da Bolha">
+            <div class="demo-actions">
+              <button type="button" data-action="toy" aria-pressed="false">Mostrar brinquedo</button>
+              <button type="button" data-action="juggle" aria-pressed="false">Embaixadinhas</button>
+              <button type="button" data-action="notebook" aria-pressed="false">Notebook</button>
+              <button type="button" data-action="cursor" aria-pressed="false">Chamar ao cursor</button>
             </div>
-          </details>
+            <details class="expressions">
+              <summary>Expressões e brinquedo</summary>
+              <div class="extra-controls">
+                <div class="expression-list" role="group" aria-label="Expressões">
+                  <button class="expression-button" type="button" data-expression="feliz" aria-pressed="false">Feliz</button>
+                  <button class="expression-button" type="button" data-expression="curioso" aria-pressed="false">Curiosa</button>
+                  <button class="expression-button" type="button" data-expression="dormindo" aria-pressed="false">Dormir</button>
+                  <button class="expression-button" type="button" data-expression="bravo" aria-pressed="false">Brava</button>
+                </div>
+                <label class="toy-choice">Brinquedo
+                  <select id="toyKind">
+                    <option value="ball">Bolinha</option>
+                    <option value="peanut">Amendoim</option>
+                  </select>
+                </label>
+              </div>
+            </details>
+          </div>
         </div>
+        <p class="help" id="demo-help">Toque ou clique para fazer carinho. Segure para arrastar e solte em movimento para arremessar.</p>
       </section>
     </div>
 

@@ -12,7 +12,6 @@ Abra `index.html` no navegador. O arquivo `bolha-preview.html` que acompanha o Z
 - Segure para mover a Bolha. Ao soltar, ela cai e quica. Solte enquanto estiver movendo para arremessar. Segurar por mais tempo aumenta a irritação. A roda do mouse serve para girar.
 - Mude as expressões nos controles ou abra o menu com o botão direito na Bolha. A reação de sono inclui as marcas “zzz”.
 - Escolha a **Bolinha** ou o **Amendoim**. Passe o cursor perto do brinquedo para empurrar ou lançar para cima. Também é possível segurar e arremessar.
-- No **Pingue-pongue**, use ponteiro, toque ou setas para mover a raquete. A partida vai até cinco pontos. Use **Esc** para sair.
 - Em **Embaixadinhas**, a Bolha sorteia um total entre 1 e 100 e conta os toques. O **Notebook** mostra a animação de digitação.
 - Use **Chamar ao cursor**, ou toque duas vezes no Alt esquerdo com o desktop da demo focado. Mova o cursor dentro do desktop e clique para soltá-lo. **Pausar** congela a cena.
 

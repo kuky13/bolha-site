@@ -17,7 +17,7 @@ html = (root / 'index.html').read_text()
 html = html.replace(
     '<link rel="stylesheet" href="style.css">',
     '<style>\n' + (root / 'style.css').read_text().replace(
-        'assets/inter-latin.woff2', data_url(root / 'assets/inter-latin.woff2', 'font/woff2')
+        'assets/rethink-sans-latin.woff2', data_url(root / 'assets/rethink-sans-latin.woff2', 'font/woff2')
     ) + '</style>',
 )
 html = html.replace(

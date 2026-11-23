@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#17151e">
+  <meta name="description" content="Acompanhe os problemas conhecidos e as correções da Bolha para Windows e Android.">
+  <link rel="icon" href="../assets/bolha-mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../style.css">
+  <title>Suporte da Bolha</title>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+  <header class="site-header">
+    <div class="frame header-row">
+      <a class="brand" href="../"><img src="../assets/bolha-mark.svg" width="34" height="34" alt=""><span>Bolha</span></a>
+      <nav aria-label="Navegação principal">
+        <a href="../#baixar">Baixar</a>
+        <a href="#relatar">Relatar problema</a>
+      </nav>
+    </div>
+  </header>
+  <main id="conteudo" class="frame support-page">
+    <header class="support-intro">
+      <h1>Suporte da Bolha</h1>
+      <p>Encontrou um erro? Veja os problemas conhecidos ou conte o que aconteceu.</p>
+      <nav aria-label="Nesta página">
+        <a class="button primary" href="#relatar">Relatar problema</a>
+        <a class="button secondary" href="#conhecidos">Problemas conhecidos</a>
+        <a class="button secondary" href="#correcoes">Correções publicadas</a>
+      </nav>
+    </header>
+
+    <section id="conhecidos" aria-labelledby="conhecidos-titulo">
+      <h2 id="conhecidos-titulo">Problemas conhecidos</h2>
+      <article class="support-card">
+        <p class="support-meta">Windows · Em investigação</p>
+        <h3>Carga do MCHOSE V9 Pro pelo cabo USB</h3>
+        <p>O headset pode estar carregando enquanto o painel mostra a carga como indisponível. Estamos verificando o que o cabo e o receptor sem fio informam ao Windows.</p>
+      </article>
+    </section>
+
+    <section id="correcoes" aria-labelledby="correcoes-titulo">
+      <h2 id="correcoes-titulo">Correções publicadas</h2>
+      <article class="support-card">
+        <p class="support-meta">Windows · 0.5.9.2</p>
+        <h3>Identificação do headset no painel de baterias</h3>
+        <p>O MCHOSE V9 Pro recebe o ícone de headset com microfone. Quando um periférico confirma que está carregando, a Bolha mostra um raio no painel e na bandeja.</p>
+        <a href="https://github.com/kuky13/bolha/releases/tag/v0.5.9.2">Ver notas da versão</a>
+      </article>
+    </section>
+
+    <section id="relatar" aria-labelledby="relatar-titulo">
+      <h2 id="relatar-titulo">Relatar um problema</h2>
+      <p>Informe a versão da Bolha, o sistema e o que você fez antes do erro. Você precisa de uma conta no GitHub para enviar.</p>
+      <div class="support-actions">
+        <a class="button primary" href="https://github.com/kuky13/bolha/issues/new?template=bug_report.yml">Abrir relato público no GitHub</a>
+        <a class="button secondary" href="https://github.com/kuky13/bolha/issues">Ver relatos públicos</a>
+      </div>
+      <p>Qualquer pessoa pode ler esses relatos. Remova dados pessoais de textos, imagens e registros antes de enviar. O formulário privado da Bolha ainda está em testes.</p>
+    </section>
+
+    <section aria-labelledby="apoiar-titulo">
+      <h2 id="apoiar-titulo">Ajude a cuidar da Bolha</h2>
+      <p>A Bolha é gratuita e de código aberto. Você pode ajudar testando versões, relatando erros ou contribuindo com o código.</p>
+      <a href="https://github.com/kuky13/bolha/blob/main/CONTRIBUTING.md">Veja como contribuir</a>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="frame footer-row"><p>Bolha · código aberto</p><a href="../">Voltar para a Bolha</a></div>
+  </footer>
+</body>
+</html>

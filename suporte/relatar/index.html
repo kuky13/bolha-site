@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#17151e">
+  <meta name="description" content="Envie um relato privado aos mantenedores da Bolha.">
+  <link rel="icon" href="../../assets/bolha-mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../style.css">
+  <title>Relatar problema · Bolha</title>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+  <header class="site-header">
+    <div class="frame header-row">
+      <a class="brand" href="../../"><img src="../../assets/bolha-mark.svg" width="34" height="34" alt=""><span>Bolha</span></a>
+      <nav aria-label="Navegação principal"><a href="../">Suporte</a><a href="../#privacidade">Privacidade</a></nav>
+    </div>
+  </header>
+  <main id="conteudo" class="frame support-page report-page">
+    <header class="support-intro">
+      <h1>Relatar problema</h1>
+      <p>Conte o que aconteceu. Depois, revise os dados e confirme o envio privado.</p>
+    </header>
+
+    <noscript><p>Ative o JavaScript para revisar e enviar um relato por aqui.</p></noscript>
+    <form id="report-form" class="report-form" autocomplete="off" hidden>
+      <div id="report-fields" class="report-fields">
+        <label>Título
+          <input name="title" required minlength="4" maxlength="180">
+        </label>
+        <div class="report-form-row">
+          <label><span id="report-platform-label">Sistema</span>
+            <select name="platform" aria-labelledby="report-platform-label" required>
+              <option value="" selected disabled>Escolha seu sistema</option>
+              <option>Windows</option><option>Android</option><option>Linux</option>
+            </select>
+          </label>
+          <label>Versão da Bolha (opcional)
+            <input name="version" maxlength="32" placeholder="Ex. 0.5.9.2">
+          </label>
+        </div>
+        <label>O que aconteceu?
+          <textarea name="description" required minlength="8" maxlength="4000" rows="4"></textarea>
+        </label>
+        <label>Como repetir o problema? (opcional)
+          <textarea name="steps" maxlength="4000" rows="3"></textarea>
+        </label>
+        <label>Imagens ou vídeos (opcional)
+          <input type="file" name="media" multiple aria-describedby="report-media-help" accept=".png,.jpg,.jpeg,.gif,.webp,.mp4,.webm,.mov">
+        </label>
+        <p id="report-media-help" class="report-help">Até 3 anexos. Imagens até 5 MB, vídeos até 15 MB e no máximo 20 MB ao todo. Remova informações pessoais antes de anexar.</p>
+        <button type="submit" class="button primary">Revisar relato</button>
+      </div>
+
+      <div id="report-review" class="report-fields" hidden>
+        <h2 tabindex="-1">Confira seu relato</h2>
+        <dl id="report-preview" class="support-card report-preview"></dl>
+        <p class="report-help">Os mantenedores recebem esses dados na VPS da KukySolutions para investigar o erro. <a href="../#privacidade">Privacidade e exclusão de dados</a>.</p>
+        <label class="report-consent"><input type="checkbox" name="consent" disabled> Revisei o relato e autorizo o envio dos dados selecionados.</label>
+        <div class="support-actions">
+          <button type="submit" class="button primary" id="report-send">Enviar relato</button>
+          <button type="button" class="button secondary" id="report-edit">Editar</button>
+        </div>
+      </div>
+      <p id="report-error" role="alert" hidden></p>
+      <p id="report-progress" role="status" hidden></p>
+    </form>
+
+    <div id="report-success" class="support-card" hidden>
+      <h2 tabindex="-1">Relato recebido</h2>
+      <p>Guarde o protocolo <strong id="report-protocol"></strong> para pedir informações ou excluir o relato.</p>
+      <a href="../">Voltar para o suporte</a>
+    </div>
+  </main>
+  <script src="report.js" defer></script>
+</body>
+</html>
